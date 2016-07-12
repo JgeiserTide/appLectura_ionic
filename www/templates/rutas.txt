@@ -1,0 +1,3 @@
+http://applectura.tide.cl/api/app/establecimientos
+http://applectura.tide.cl/api/app/users
+http://applectura.tide.cl/api/app/roles

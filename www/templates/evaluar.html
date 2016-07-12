@@ -1,0 +1,95 @@
+<ion-view view-title="Evaluar">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+<div class="hero-alumno slide-up" style="background-image: url('');">
+            <div class="content">
+               <div class="avatar-alumno" >
+                    <i class="icon ion-person"></i>
+                </div>
+                <h3>{{estudiante.user}}</h3>
+                <h5>{{estudiante.curso}}</h5>
+                <a ui-sref="app.friends" >
+                    <div class="cambio-alumno" >
+                    <i class="icon ion-gear-a"></i>
+                  </div>
+                </a>
+            </div>
+        </div>
+         <ion-nav-back-button class="no-text">
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon-round" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <button class="button button-icon button-clear ion-search" menu-toggle="modal">
+                </button>
+            </ion-nav-buttons>
+        <div class="menu-alumno">
+            <div class="tabs tabs-light  fixed">
+                    <a ui-sref="app.evaluar" class="tab-item tab-item-active" >
+                        <i class="icon ion-compose"></i> Evaluar
+                    </a>
+                           
+                    <a ui-sref="app.gallery" class="tab-item " ui-sref-active="active">
+                        <i class="icon ion-clock"></i> historial
+                    </a>
+                    <a ui-sref="app.alertas" class="tab-item">
+                        <i class="icon ion-ios-information"></i> Alertas
+                    </a>
+                       <a ui-sref="app.informes" class="tab-item">
+                        <i class="icon ion-archive"></i> Generar informe
+                    </a>
+            </div>
+        </div>
+         <div class="evaluar-desc animate-fade-slide-in-right ">
+
+            <h4 class="title-menu-alumno">Evaluar</h4>
+
+            <div class="card">
+
+                <p class="desc-evaluar">Test de evaluación de conocimiento de letras, fonema y grafema. El orden de las letras es aleatorio.</p>
+                <h5>Seleccione Mes a evaluar</h5>
+                  
+                <div class="list-select">
+                  <label class="item item-input item-select">
+                    <div class="input-label">
+                       <i class="icon ion-calendar dark"></i>
+                    </div>
+                    <select>
+                 
+                      <option selected>Marzo</option>
+                      <option>Abril</option>
+                      <option>Junio</option>
+                      <option>Julio</option>
+                      <option>Agosto</option>
+                      <option>Septiembre</option>
+                      <option>Octubre</option>
+                      <option>Noviembre</option>
+                    </select>
+                  </label>
+                 
+                </div>
+              </div>
+              <a ui-sref="app.test-letrasb" class=""><button class="button button-block button-evaluar icon-right ion-chevron-right">Comenzar evaluación</button></a>
+            </div>
+
+    </ion-content>
+
+    <ion-footer-bar align-title="center" class="bar-assertive">
+    <div class="tabs-master">     
+        <div class="tabs tabs-light  fixed tabs-icon-top">
+            <a ui-sref="app.profile" class="tab-item " ui-sref-active="active">
+                <i class="icon ion-home"></i>Home
+            </a>
+                   
+            <a ui-sref="app.evaluar" class="tab-item tab-item-active">
+                <i class="icon ion-person"></i>Alumno
+            </a>
+            <a ui-sref="app.evaluar" class="tab-item">
+                <i class="icon ion-search"></i> Buscar
+            </a>
+        </div>
+    </div>
+
+    </ion-footer-bar>
+</ion-view>

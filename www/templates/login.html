@@ -1,19 +1,27 @@
-<ion-view view-title="Login">
-  <ion-content>
-    <form ng-submit="login()">
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="text" ng-model="loginData.email">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
+<ion-view view-title="Login" align-title="left">
+  <ion-content class="login">
+    <div class="hero no-header flat">
+      <div class="content">
+        <div class="app-icon"></div>
+        <h1></h1>
       </div>
-    </form>
+    </div>
+    <div class="padding log">
+      <form ng-submit="login()">
+        <label class="item item-input">
+          <input type="text" ng-model="loginData.email" placeholder="Nombre de usuario">
+        </label>
+        <br>
+
+        <label class="item item-input">
+          <input type="password" ng-model="loginData.password" placeholder="Contraseña">
+        </label>
+        <br>
+        
+        <button class="button button-full button-login" type="submit" >Ingresar</button>
+      </form>
+    </div>
+     <!-- <button  class="button button-full button-registrate" >
+        <span>¿No tienes una cuenta? <strong>Regístrate.</strong></span></button> -->
   </ion-content>
 </ion-view>

@@ -1,0 +1,153 @@
+<ion-view view-title="Historial">
+
+    <ion-content ng-class="{expanded:$scope.isExpanded}" class="center">
+        <div class="hero-alumno slide-up" style="background-image: url('');">
+            <div class="content">
+               
+                <div class="avatar-alumno" >
+                    <i class="icon ion-university"></i></div>
+                <h3>Nombre Alumno</h3>
+                
+                <h5>Primero Básico A</h5>
+               <a ui-sref="app.friends" ><div class="cambio-alumno" >
+                <i class="icon ion-gear-a"></i></div></a>
+
+            </div>
+        </div>
+         <ion-nav-back-button class="no-text">
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon-round" menu-toggle="left">
+                </button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+                <button class="button button-icon button-clear ion-search" menu-toggle="modal">
+                </button>
+            </ion-nav-buttons>
+        <div class="menu-alumno">
+            <div class="tabs tabs-light  fixed">
+                    <a ui-sref="app.evaluar" class="tab-item" >
+                        <i class="icon ion-compose"></i> Evaluar
+                    </a>
+                           
+                    <a ui-sref="app.gallery" class="tab-item tab-item-active" ui-sref-active="active">
+                        <i class="icon ion-clock"></i> historial
+                    </a>
+                    <a ui-sref="app.alertas" class="tab-item">
+                        <i class="icon ion-ios-information"></i> Alertas
+                    </a>
+                       <a ui-sref="app.informes" class="tab-item">
+                        <i class="icon ion-archive"></i> Generar informe
+                    </a>
+            </div>
+        </div>
+         <div class="card-syl">
+            <div ui-sref="app.gallery" class="card ink ink-dark">
+                <div class="item item-avatar item-text-wrap">
+                    <div class="item-icon-left">
+                <i class="icon ion-arrow-left-c"></i>
+                </div>
+                    <span class="avatar">M</span>
+                    <div class="pull-left">
+                                <i class="icon ion-calendar dark"></i> 16/03/2016
+                        
+                
+                   <h2>Marzo</h2></div>
+                    <div class="card-footer text-right">
+                        <h4>Resultados</h4>
+                        <i class="icon ion-ios-checkmark balanced"></i> 6
+                        <i class="icon ion-ios-minus energized"></i> 8
+                        <i class="icon ion-ios-close assertive"></i> 23
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="tabs tabs-syl ">
+                    <a ui-sref="app.evaluar" class="tab-item tab-item-active" >
+                        
+                        <img src="img/icon-syl.svg" alt="" class="icon-syl"> Sonido y Letra
+                    </a>
+                           
+                    <a ui-sref="app.gallery" class="tab-item " ui-sref-active="active">
+                        <i class="icon  ion-android-volume-up"></i> Letra
+                    </a>
+                    <a ui-sref="app.activity" class="tab-item">
+                        <img src="img/icon-letra.svg" alt="" class="icon-letra"></i> Sonido
+                    </a>
+        </div>
+
+
+         <div class="hist center">
+
+           
+            <table>
+                <tr class="row row-center">
+                    <td class="col" onclick="setColor(this)">A</td>
+                    <td class="col" onclick="setColor(this)">b</td>
+                    <td class="col" onclick="setColor(this)">c</td>
+                    <td class="col" onclick="setColor(this)">d</td>
+                    <td class="col" onclick="setColor(this)">e</td>
+                    <td class="col" onclick="setColor(this)">f</td>
+                </tr> 
+                <tr class="row">
+                    <td class="col" onclick="setColor(this)">g</td>
+                    <td class="col" onclick="setColor(this)">h</td>
+                    <td class="col" onclick="setColor(this)">i</td>
+                    <td class="col" onclick="setColor(this)">j</td>
+                    <td class="col" onclick="setColor(this)">k</td>
+                    <td class="col" onclick="setColor(this)">l</td>
+                </tr> 
+                <tr class="row">
+                    <td class="col" onclick="setColor(this)">m</td>
+                    <td class="col" onclick="setColor(this)">n</td>
+                    <td class="col" onclick="setColor(this)">ñ</td>
+                    <td class="col" onclick="setColor(this)">o</td>
+                    <td class="col" onclick="setColor(this)">p</td>
+                    <td class="col" onclick="setColor(this)">q</td>
+                </tr> 
+                <tr class="row">
+                    <td class="col" onclick="setColor(this)">r</td>
+                    <td class="col" onclick="setColor(this)">s</td>
+                    <td class="col" onclick="setColor(this)">t</td>
+                    <td class="col" onclick="setColor(this)">u</td>
+                    <td class="col" onclick="setColor(this)">v</td>
+                    <td class="col" onclick="setColor(this)">w</td>
+                </tr> 
+                <tr class="row">
+                    <td class="col" onclick="setColor(this)">x</td>
+                    <td class="col" onclick="setColor(this)">y</td>
+                    <td class="col" onclick="setColor(this)">z</td>
+                    <td class="col" onclick="setColor(this)"></td>
+                    <td class="col" onclick="setColor(this)"></td>
+                    <td class="col" onclick="setColor(this)"></td>
+                  
+                </tr> 
+            </table>             
+      
+
+        </div>
+        
+    </ion-content>
+
+ <ion-footer-bar align-title="center" class="bar-assertive">
+    <div class="tabs-master">     
+        <div class="tabs tabs-light  fixed tabs-icon-top">
+            <a ui-sref="app.profile" class="tab-item " ui-sref-active="active">
+                <i class="icon ion-home"></i>Home
+            </a>
+                   
+            <a ui-sref="app.evaluar" class="tab-item tab-item-active">
+                <i class="icon ion-person"></i>Alumno
+            </a>
+            <a ui-sref="app.evaluar" class="tab-item">
+                <i class="icon ion-search"></i> Buscar
+            </a>
+        </div>
+    </div>
+
+    </ion-footer-bar>
+</ion-view>
+
+

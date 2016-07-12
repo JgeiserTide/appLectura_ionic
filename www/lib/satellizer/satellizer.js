@@ -1,6 +1,6 @@
 /**
- * Satellizer 0.13.1
- * (c) 2015 Sahat Yalkabov
+ * Satellizer 0.14.1
+ * (c) 2016 Sahat Yalkabov
  * License: MIT
  */
 
@@ -13,19 +13,18 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
   'use strict';
 
   if (!window.location.origin) {
-    window.location.origin = window.location.protocol + '//' + window.location.host;
+    window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
   }
 
   angular.module('satellizer', [])
     .constant('SatellizerConfig', {
       httpInterceptor: function() { return true; },
-      withCredentials: true,
+      withCredentials: false,
       tokenRoot: null,
-      cordova: false,
       baseUrl: '/',
       loginUrl: '/auth/login',
       signupUrl: '/auth/signup',
-      unlinkUrl: '/auth/unlink/',
+      unlinkUrl: '/auth/unlink',
       tokenName: 'token',
       tokenPrefix: 'satellizer',
       authHeader: 'Authorization',
@@ -41,7 +40,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           scope: ['email'],
           scopeDelimiter: ',',
           display: 'popup',
-          type: '2.0',
+          oauthType: '2.0',
           popupOptions: { width: 580, height: 400 }
         },
         google: {
@@ -50,13 +49,17 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
           redirectUri: window.location.origin,
           requiredUrlParams: ['scope'],
-          optionalUrlParams: ['display'],
+          optionalUrlParams: ['display', 'state'],
           scope: ['profile', 'email'],
           scopePrefix: 'openid',
           scopeDelimiter: ' ',
           display: 'popup',
-          type: '2.0',
-          popupOptions: { width: 452, height: 633 }
+          oauthType: '2.0',
+          popupOptions: { width: 452, height: 633 },
+          state: function() {
+            var rand = Math.random().toString(36).substr(2);
+            return encodeURIComponent(rand);
+          }
         },
         github: {
           name: 'github',
@@ -66,7 +69,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           optionalUrlParams: ['scope'],
           scope: ['user:email'],
           scopeDelimiter: ' ',
-          type: '2.0',
+          oauthType: '2.0',
           popupOptions: { width: 1020, height: 618 }
         },
         instagram: {
@@ -77,7 +80,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           requiredUrlParams: ['scope'],
           scope: ['basic'],
           scopeDelimiter: '+',
-          type: '2.0'
+          oauthType: '2.0'
         },
         linkedin: {
           name: 'linkedin',
@@ -88,7 +91,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           scope: ['r_emailaddress'],
           scopeDelimiter: ' ',
           state: 'STATE',
-          type: '2.0',
+          oauthType: '2.0',
           popupOptions: { width: 527, height: 582 }
         },
         twitter: {
@@ -96,7 +99,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           url: '/auth/twitter',
           authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
           redirectUri: window.location.origin,
-          type: '1.0',
+          oauthType: '1.0',
           popupOptions: { width: 495, height: 645 }
         },
         twitch: {
@@ -108,7 +111,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           scope: ['user_read'],
           scopeDelimiter: ' ',
           display: 'popup',
-          type: '2.0',
+          oauthType: '2.0',
           popupOptions: { width: 500, height: 560 }
         },
         live: {
@@ -120,7 +123,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           scope: ['wl.emails'],
           scopeDelimiter: ' ',
           display: 'popup',
-          type: '2.0',
+          oauthType: '2.0',
           popupOptions: { width: 500, height: 560 }
         },
         yahoo: {
@@ -130,8 +133,19 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           redirectUri: window.location.origin,
           scope: [],
           scopeDelimiter: ',',
-          type: '2.0',
+          oauthType: '2.0',
           popupOptions: { width: 559, height: 519 }
+        },
+        bitbucket: {
+          name: 'bitbucket',
+          url: '/auth/bitbucket',
+          authorizationEndpoint: 'https://bitbucket.org/site/oauth2/authorize',
+          redirectUri: window.location.origin + '/',
+          requiredUrlParams: ['scope'],
+          scope: ['email'],
+          scopeDelimiter: ' ',
+          oauthType: '2.0',
+          popupOptions: { width: 1028, height: 529 }
         }
       }
     })
@@ -189,10 +203,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           get: function() { return config.withCredentials; },
           set: function(value) { config.withCredentials = value; }
         },
-        cordova: {
-          get: function() { return config.cordova; },
-          set: function(value) { config.cordova = value; }
-        },
         storageType: {
           get: function() { return config.storageType; },
           set: function(value) { config.storageType = value; }
@@ -212,12 +222,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
 
       this.oauth1 = function(params) {
         oauth(params);
-        config.providers[params.name].type = '1.0';
+        config.providers[params.name].oauthType = '1.0';
       };
 
       this.oauth2 = function(params) {
         oauth(params);
-        config.providers[params.name].type = '2.0';
+        config.providers[params.name].oauthType = '2.0';
       };
 
       this.$get = [
@@ -310,7 +320,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
 
         Shared.setToken = function(response) {
           if (!response) {
-            return $log.warn('Satellizer Warning: Can\'t set token without passing a value');
+            return $log.warn('Can\'t set token without passing a value');
           }
 
           var accessToken = response && response.access_token;
@@ -326,12 +336,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
 
           if (!token && response) {
             var tokenRootData = config.tokenRoot && config.tokenRoot.split('.').reduce(function(o, x) { return o[x]; }, response.data);
-            token = tokenRootData ? tokenRootData[config.tokenName] : response.data[config.tokenName];
+            token = tokenRootData ? tokenRootData[config.tokenName] : response.data && response.data[config.tokenName];
           }
 
           if (!token) {
             var tokenPath = config.tokenRoot ? config.tokenRoot + '.' + config.tokenName : config.tokenName;
-            return $log.warn('Satellizer Warning: Expecting a token named "' + tokenPath);
+            return $log.warn('Expecting a token named "' + tokenPath);
           }
 
           storage.set(tokenName, token);
@@ -346,7 +356,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
          */
         Shared.isAuthenticated = function() {
           var token = storage.get(tokenName);
-
           // A token is present
           if (token) {
             // Token with a valid JWT format XXX.YYY.ZZZ
@@ -361,7 +370,6 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
                   var isExpired = Math.round(new Date().getTime() / 1000) >= exp;
                   if (isExpired) {
                     // FAIL: Expired token
-                    storage.remove(tokenName);
                     return false;
                   } else {
                     // PASS: Non-expired token
@@ -403,7 +411,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
         var Oauth = {};
 
         Oauth.authenticate = function(name, userData) {
-          var provider = config.providers[name].type === '1.0' ? new Oauth1() : new Oauth2();
+          var provider = config.providers[name].oauthType === '1.0' ? new Oauth1() : new Oauth2();
           var deferred = $q.defer();
 
           provider.open(config.providers[name], userData || {})
@@ -424,12 +432,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
         };
 
         Oauth.unlink = function(provider, opts) {
-            opts = opts || {};
-            opts.url = opts.url ? opts.url : utils.joinUrl(config.baseUrl, config.unlinkUrl);
-            opts.data = { provider: provider } || opts.data;
-            opts.method = opts.method || 'POST';
+          opts = opts || {};
+          opts.url = opts.url ? opts.url : utils.joinUrl(config.baseUrl, config.unlinkUrl);
+          opts.data = { provider: provider } || opts.data;
+          opts.method = opts.method || 'POST';
+          opts.withCredentials = opts.withCredentials || config.withCredentials;
 
-            return $http(opts);
+          return $http(opts);
         };
 
         return Oauth;
@@ -447,6 +456,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           opts.url = opts.url ? opts.url : utils.joinUrl(config.baseUrl, config.loginUrl);
           opts.data = user || opts.data;
           opts.method = opts.method || 'POST';
+          opts.withCredentials = opts.withCredentials || config.withCredentials;
 
           return $http(opts).then(function(response) {
             shared.setToken(response);
@@ -459,6 +469,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           opts.url = opts.url ? opts.url : utils.joinUrl(config.baseUrl, config.signupUrl);
           opts.data = user || opts.data;
           opts.method = opts.method || 'POST';
+          opts.withCredentials = opts.withCredentials || config.withCredentials;
 
           return $http(opts);
         };
@@ -469,11 +480,12 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
       '$q',
       '$http',
       '$window',
+      '$timeout',
       'SatellizerPopup',
       'SatellizerUtils',
       'SatellizerConfig',
       'SatellizerStorage',
-      function($q, $http, $window, popup, utils, config, storage) {
+      function($q, $http, $window, $timeout, popup, utils, config, storage) {
         return function() {
           var Oauth2 = {};
 
@@ -489,41 +501,51 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
 
           Oauth2.open = function(options, userData) {
             defaults = utils.merge(options, defaults);
+            var defer = $q.defer();
 
-            var url;
-            var openPopup;
-            var stateName = defaults.name + '_state';
+            $timeout(function () {
+              var url;
+              var openPopup;
+              var stateName = defaults.name + '_state';
 
-            if (angular.isFunction(defaults.state)) {
-              storage.set(stateName, defaults.state());
-            } else if (angular.isString(defaults.state)) {
-              storage.set(stateName, defaults.state);
-            }
+              if (angular.isFunction(defaults.state)) {
+                storage.set(stateName, defaults.state());
+              } else if (angular.isString(defaults.state)) {
+                storage.set(stateName, defaults.state);
+              }
 
-            url = [defaults.authorizationEndpoint, Oauth2.buildQueryString()].join('?');
+              url = [defaults.authorizationEndpoint, Oauth2.buildQueryString()].join('?');
 
-            if (config.cordova) {
-              openPopup = popup.open(url, defaults.name, defaults.popupOptions, defaults.redirectUri).eventListener(defaults.redirectUri);
-            } else {
-              openPopup = popup.open(url, defaults.name, defaults.popupOptions, defaults.redirectUri).pollPopup();
-            }
+              if (window.cordova) {
+                openPopup = popup.open(url, defaults.name, defaults.popupOptions, defaults.redirectUri).eventListener(defaults.redirectUri);
+              } else {
+                openPopup = popup.open(url, defaults.name, defaults.popupOptions, defaults.redirectUri).pollPopup(defaults.redirectUri);
+              }
 
-            return openPopup
-              .then(function(oauthData) {
-                // When no server URL provided, return popup params as-is.
-                // This is for a scenario when someone wishes to opt out from
-                // Satellizer's magic by doing authorization code exchange and
-                // saving a token manually.
-                if (defaults.responseType === 'token' || !defaults.url) {
-                  return oauthData;
-                }
+              openPopup
+                .then(function(oauthData) {
+                  // When no server URL provided, return popup params as-is.
+                  // This is for a scenario when someone wishes to opt out from
+                  // Satellizer's magic by doing authorization code exchange and
+                  // saving a token manually.
+                  if (defaults.responseType === 'token' || !defaults.url) {
+                    return defer.resolve(oauthData);
+                  }
 
-                if (oauthData.state && oauthData.state !== storage.get(stateName)) {
-                  return $q.reject('OAuth "state" mismatch');
-                }
+                  if (oauthData.state && oauthData.state !== storage.get(stateName)) {
+                    return defer.reject(
+                      'The value returned in the state parameter does not match the state value from your original ' +
+                      'authorization code request.'
+                    );
+                  }
 
-                return Oauth2.exchangeForToken(oauthData, userData);
-              });
+                  defer.resolve(Oauth2.exchangeForToken(oauthData, userData));
+                }, function (err) {
+                  defer.reject(err);
+                });
+            });
+
+            return defer.promise;
           };
 
           Oauth2.exchangeForToken = function(oauthData, userData) {
@@ -541,7 +563,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
                   data[value] = defaults.redirectUri;
                   break;
                 default:
-                  data[value] = oauthData[key]
+                  data[value] = oauthData[key];
               }
             });
 
@@ -556,13 +578,16 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
 
           Oauth2.buildQueryString = function() {
             var keyValuePairs = [];
-            var urlParams = ['defaultUrlParams', 'requiredUrlParams', 'optionalUrlParams'];
+            var urlParamsCategories = ['defaultUrlParams', 'requiredUrlParams', 'optionalUrlParams'];
 
-            angular.forEach(urlParams, function(params) {
-
-              angular.forEach(defaults[params], function(paramName) {
+            angular.forEach(urlParamsCategories, function(paramsCategory) {
+              angular.forEach(defaults[paramsCategory], function(paramName) {
                 var camelizedName = utils.camelCase(paramName);
                 var paramValue = angular.isFunction(defaults[paramName]) ? defaults[paramName]() : defaults[camelizedName];
+
+                if (paramName === 'redirect_uri' && !paramValue) {
+                    return;
+                }
 
                 if (paramName === 'state') {
                   var stateName = defaults.name + '_state';
@@ -612,19 +637,27 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
             var popupWindow;
             var serverUrl = config.baseUrl ? utils.joinUrl(config.baseUrl, defaults.url) : defaults.url;
 
-            if (!config.cordova) {
-              popupWindow = popup.open('', defaults.name, defaults.popupOptions, defaults.redirectUri);
+            if (!window.cordova) {
+                popupWindow = popup.open('', defaults.name, defaults.popupOptions, defaults.redirectUri);
             }
 
             return $http.post(serverUrl, defaults)
               .then(function(response) {
-                if (config.cordova) {
-                  popupWindow = popup.open([defaults.authorizationEndpoint, Oauth1.buildQueryString(response.data)].join('?'), defaults.name, defaults.popupOptions, defaults.redirectUri);
+                var url = [defaults.authorizationEndpoint, Oauth1.buildQueryString(response.data)].join('?');
+
+                if (window.cordova) {
+                  popupWindow = popup.open(url, defaults.name, defaults.popupOptions, defaults.redirectUri);
                 } else {
-                  popupWindow.popupWindow.location = [defaults.authorizationEndpoint, Oauth1.buildQueryString(response.data)].join('?');
+                  popupWindow.popupWindow.location = url;
                 }
 
-                var popupListener = config.cordova ? popupWindow.eventListener(defaults.redirectUri) : popupWindow.pollPopup();
+                var popupListener;
+
+                if (window.cordova) {
+                  popupListener = popupWindow.eventListener(defaults.redirectUri);
+                } else {
+                  popupListener = popupWindow.pollPopup(defaults.redirectUri);
+                }
 
                 return popupListener
                   .then(function(response) {
@@ -668,16 +701,9 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
         Popup.open = function(url, name, options) {
           Popup.url = url;
 
-          if (config.cordova) {
-            options.location = options.location || 'no';
-            options.toolbar = options.toolbar || 'yes';
-            options.width = $window.screen.width;
-            options.height = $window.screen.height;
-          }
-
           var stringifiedOptions = Popup.stringifyOptions(Popup.prepareOptions(options));
           var UA = $window.navigator.userAgent;
-          var windowName = (config.cordova || UA.indexOf('CriOS') > -1) ? '_blank' : name;
+          var windowName = (window.cordova || UA.indexOf('CriOS') > -1) ? '_blank' : name;
 
           Popup.popupWindow = $window.open(url, windowName, stringifiedOptions);
 
@@ -724,40 +750,56 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
           return deferred.promise;
         };
 
-        Popup.pollPopup = function() {
+        Popup.pollPopup = function(redirectUri) {
           var deferred = $q.defer();
 
+          var redirectUriParser = document.createElement('a');
+          redirectUriParser.href = redirectUri;
+
+          var redirectUriPath = utils.getFullUrlPath(redirectUriParser);
+
           var polling = $interval(function() {
+            if (!Popup.popupWindow || Popup.popupWindow.closed || Popup.popupWindow.closed === undefined) {
+              deferred.reject('The popup window was closed.');
+              $interval.cancel(polling);
+            }
+
             try {
-              var documentOrigin = document.location.host;
-              var popupWindowOrigin = Popup.popupWindow.location.host;
+              var popupWindowPath = utils.getFullUrlPath(Popup.popupWindow.location);
 
-              if (popupWindowOrigin === documentOrigin && (Popup.popupWindow.location.search || Popup.popupWindow.location.hash)) {
-                var queryParams = Popup.popupWindow.location.search.substring(1).replace(/\/$/, '');
-                var hashParams = Popup.popupWindow.location.hash.substring(1).replace(/[\/$]/, '');
-                var hash = utils.parseQueryString(hashParams);
-                var qs = utils.parseQueryString(queryParams);
+              // Redirect has occurred.
+              if (popupWindowPath === redirectUriPath) {
+                // Contains query/hash parameters as expected.
+                if (Popup.popupWindow.location.search || Popup.popupWindow.location.hash) {
+                  var queryParams = Popup.popupWindow.location.search.substring(1).replace(/\/$/, '');
+                  var hashParams = Popup.popupWindow.location.hash.substring(1).replace(/[\/$]/, '');
+                  var hash = utils.parseQueryString(hashParams);
+                  var qs = utils.parseQueryString(queryParams);
 
-                angular.extend(qs, hash);
+                  angular.extend(qs, hash);
 
-                if (qs.error) {
-                  deferred.reject(qs);
+                  if (qs.error) {
+                    deferred.reject(qs);
+                  } else {
+                    deferred.resolve(qs);
+                  }
                 } else {
-                  deferred.resolve(qs);
+                  // Does not contain query/hash parameters, can't do anything at this point.
+                  deferred.reject(
+                    'Redirect has occurred but no query or hash parameters were found. ' +
+                    'They were either not set during the redirect, or were removed before Satellizer ' +
+                    'could read them, e.g. AngularJS routing mechanism.'
+                  );
                 }
 
                 $interval.cancel(polling);
-
                 Popup.popupWindow.close();
               }
             } catch (error) {
               // Ignore DOMException: Blocked a frame with origin from accessing a cross-origin frame.
+              // A hack to get around same-origin security policy errors in IE.
             }
-
-            if (!Popup.popupWindow || Popup.popupWindow.closed || Popup.popupWindow.closed === undefined) {
-              $interval.cancel(polling);
-            }
-          }, 50);
+          }, 20);
 
           return deferred.promise;
         };
@@ -786,6 +828,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
         return Popup;
       }])
     .service('SatellizerUtils', function() {
+      this.getFullUrlPath = function(location) {
+        var isHttps = location.protocol === 'https:';
+        return location.protocol + '//' + location.hostname +
+          ':' + (location.port || (isHttps ? '443' : '80')) +
+          (/^\//.test(location.pathname) ? location.pathname : '/' + location.pathname);
+      };
+
       this.camelCase = function(name) {
         return name.replace(/([\:\-\_]+(.))/g, function(_, separator, letter, offset) {
           return offset ? letter.toUpperCase() : letter;
@@ -843,12 +892,13 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
 
         }
         return result;
-      }
+      };
     })
     .factory('SatellizerStorage', ['$window', '$log', 'SatellizerConfig', function($window, $log, config) {
 
       var store = {};
 
+      // Check if localStorage or sessionStorage is available or enabled
       var isStorageAvailable = (function() {
         try {
           var supported = config.storageType in $window && $window[config.storageType] !== null;
@@ -866,7 +916,7 @@ if (typeof module !== 'undefined' && typeof exports !== 'undefined' && module.ex
       })();
 
       if (!isStorageAvailable) {
-        $log.warn('Satellizer Warning: ' + config.storageType + ' is not available.');
+        $log.warn(config.storageType + ' is not available.');
       }
 
       return {

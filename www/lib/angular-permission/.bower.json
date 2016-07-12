@@ -1,42 +1,56 @@
 {
   "name": "angular-permission",
-  "version": "1.1.1",
+  "version": "3.2.1",
   "authors": [
-    "Rafael Vidaurre <narzerus@gmail.com>"
+    "Rafael Vidaurre <narzerus@gmail.com> (http://www.rafaelvidaurre.com)",
+    "Blazej Krysiak <blazej.krysiak@gmail.com>"
   ],
-  "description": "Route permission and access control as simple as it can get",
-  "main": "dist/angular-permission.js",
+  "description": "Fully featured role and permission based access control for your angular applications",
+  "main": [
+    "dist/angular-permission.js",
+    "dist/angular-permission-ui.js",
+    "dist/angular-permission-ng.js"
+  ],
   "keywords": [
     "angular",
+    "ui-router",
+    "ng-route",
+    "angular-route",
+    "access-control",
     "permissions",
+    "access",
+    "acl",
+    "rbac",
     "roles",
     "route"
   ],
   "license": "MIT",
-  "homepage": "http://www.rafaelvidaurre.com",
+  "homepage": "https://github.com/Narzerus/angular-permission",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
+    "config",
     "test",
-    "tests",
-    "src"
+    "src",
+    "Gruntfile.js",
+    "index.js",
+    "package.json",
+    "CONTRIBUTING.md"
   ],
   "devDependencies": {
-    "angular": "*",
-    "angular-mocks": "*"
+    "angular-mocks": "*",
+    "angular-route": "*",
+    "angular-ui-router": "^0.2.11 || ^0.3.0"
   },
   "dependencies": {
-    "angular-ui-router": "~0.2.11"
+    "angular": ">=1.4.8"
   },
-  "_release": "1.1.1",
+  "_release": "3.2.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.1.1",
-    "commit": "fc31e3c07408aaedc51e5fedd4bc0c23c4daf934"
+    "tag": "v3.2.1",
+    "commit": "030534e8331b4e3c47ca7b0106bdda447967c78a"
   },
-  "_source": "git://github.com/Narzerus/angular-permission.git",
-  "_target": "~1.1.1",
-  "_originalSource": "angular-permission",
-  "_direct": true
+  "_source": "https://github.com/Narzerus/angular-permission.git",
+  "_target": "^3.2.1",
+  "_originalSource": "angular-permission"
 }
