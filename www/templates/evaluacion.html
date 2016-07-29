@@ -1,0 +1,44 @@
+<ion-view view-title="Test Letras">
+    <ion-content >
+      <div class="hero-alumno-test ">
+            <div class="content">
+               
+                <div class="avatar-alumno" >
+                    <a ui-sref="app.evaluar"><i class="icon ion-close"></i></a>
+                </div>
+                <h5>Alumno en evaluación</h5>
+                <h3>{{evaluacion.estudiante}}</h3>
+                
+                <div class="sig-letra" ng-show="siguiente" >
+                  <a on-tap="sgteLetra()" >
+                  <i class="icon ion-chevron-right"></i>
+                  </a>
+                  </div>
+
+            </div>
+
+        </div>
+         
+            <div class="item item-image scroll">
+              <img ng-src="{{ imageUrl }}">
+            </div>
+
+
+          <div class="test-footer" align-title="center" ng-show="botones">
+          
+         
+             <div class="row fixed">
+
+                <ion-toggle ng-model="detalleEvaluacion[letras[i]][0]" ng-checked="detalleEvaluacion[letras[i]][0]" toggle-class="toggle-calm">  <img src="img/icon-letra.svg" alt="" class="icon-letra"></ion-toggle>
+
+                <ion-toggle ng-model="detalleEvaluacion[letras[i]][1]" ng-checked="detalleEvaluacion[letras[i]][1]" toggle-class="toggle-calm">  <i class="icon  ion-android-volume-up"></i></ion-toggle>
+
+            </div>
+          </div>
+
+    
+
+    </ion-content>
+
+
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view view-title="Apprendizaje Lectura">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero slide-up" style="background-image: url('img/bg-perfil.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
+                <h3><a class="light">Nombre Docente</a></h3>
+                <hr>
+                <h4>Establecimiento</h4>
+                <h5>Primero Básico A</h5>
+            </div>
+        </div>
+               <div class="list animate-fade-slide-in-right">
+            <a ui-sref="app.friends" class="item item-avatar item-icon-left">
+                <h3>Evaluar</h3>
+                <i class="icon ion-ios-list"></i>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar item-icon-left">
+                <i class="icon ion-ios-briefcase"></i>
+                <h3>Mis Informes</h3>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar  item-icon-left">
+                <h2>Análisis</h2>
+                <i class="icon ion-ios-pie muted "></i>
+            </a>
+        </div>
+        
+    </ion-content>
+
+    <ion-footer-bar align-title="center" class="bar-assertive">
+     <div class="tabs tabs-light tabs-icon-top fixed">
+        <a ui-sref="app.profile" class="tab-item" ui-sref-active="active">
+            <i class="icon ion-person"></i> Docente
+        </a>
+               
+        <a ui-sref="app.friends" class="tab-item">
+            <i class="icon ion-android-people"></i> Alumno
+        </a>
+        <!--<a ui-sref="app.activity" class="tab-item">
+            <i class="icon ion-arrow-graph-up-right"></i> Activity
+        </a>
+        -->
+                
+        </div>
+    </ion-footer-bar>
+
+
+</ion-view>

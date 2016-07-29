@@ -1,0 +1,56 @@
+<ion-view title="Inicio">
+ <ion-content>
+<div class="hero hero-docente slide-up" style="">
+    <div class="content">
+        <div class="avatar" style="background-image: url('img/daenerys.jpg');"></div>
+        <h3>{{user.user}}</h3>
+        <hr>
+        <h4>{{user.establecimiento}}</h4>
+        <h5>{{user.curso}}</h5>
+
+        <div class="row">
+            <div class="item" ui-sref="app.estudiantes">
+                <div class="contador">{{datos_curso.cantidad_estudiantes}}</div>
+                <div class="titulo-contador"><h2>Alumnos</h2></div>
+            </div>
+            <div class="item">
+                <div class="contador">{{datos_curso.cantidad_evaluaciones}}</div>
+                <div class="titulo-contador"><h2>Evaluaciones</h2></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="opc-docente">
+    <div class="list animate-fade-slide-in-right">                
+        <a  class="item item-avatar "  ui-sref="app.actividades">
+            <h3>Actividades</h3>
+            <div class="item-icon-left">
+           <img src="img/icon-actividad.svg" alt="" class="icon">
+            </div>
+            <div class="item-icon-right">
+            <i class="icon ion-arrow-right-c"></i>
+            </div>
+        </a>
+        <a  class="item item-avatar">
+            <h3>Informes</h3>
+            <div class="item-icon-left">
+            <img src="img/icon-informes.svg" alt="" class="icon">
+            </div>
+            <div class="item-icon-right">
+            <i class="icon ion-arrow-right-c"></i>
+            </div>
+        </a>
+        <a  class="item item-avatar">
+            <h3>Análisis</h3>
+     
+            <div class="item-icon-left">
+            <img src="img/icon-analisis.svg" alt="" class="icon">
+            </div>
+            <div class="item-icon-right">
+            <i class="icon ion-arrow-right-c"></i>
+            </div>
+        </a>
+    </div>
+</div>
+ </ion-content>
+</ion-view>

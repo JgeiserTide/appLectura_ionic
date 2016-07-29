@@ -1,0 +1,126 @@
+<ion-view view-title="Historial">
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+        <div class="hero-alumno slide-up" style="background-image: url('');">
+            <div class="content">
+               
+                <div class="avatar-alumno" >
+                    <i class="icon ion-university"></i></div>
+                <h3>Nombre Alumno</h3>
+                
+                <h5>Primero Básico A</h5>
+               <a ui-sref="app.friends" ><div class="cambio-alumno" >
+                <i class="icon ion-gear-a"></i></div></a>
+
+            </div>
+        </div>
+        <div class="menu-alumno">
+            <div class="tabs tabs-light  fixed">
+                    <a ui-sref="app.evaluar" class="tab-item" >
+                        <i class="icon ion-compose"></i> Evaluar
+                    </a>
+                           
+                    <a ui-sref="app.gallery" class="tab-item tab-item-active" ui-sref-active="active">
+                        <i class="icon ion-clock"></i> historial
+                    </a>
+                    <a ui-sref="app.alertas" class="tab-item">
+                        <i class="icon ion-ios-information"></i> Alertas
+                    </a>
+                       <a ui-sref="app.informes" class="tab-item">
+                        <i class="icon ion-archive"></i> Generar informe
+                    </a>
+            </div>
+        </div>
+
+
+         <div class="list animate-fade-slide-in-right ">
+
+            <h4 class="title-menu-alumno">Evaluaciones realizadas</h4>
+
+                
+        <div class="item card-item">
+            <div ui-sref="app.historial-mes" class="card ink ink-dark">
+                <div class="item item-avatar item-text-wrap">
+                    <span class="avatar">M</span>
+                    <i class="icon ion-calendar dark"></i> 
+                   <strong>Marzo</strong>
+                    <div class="card-footer text-right">
+                        <i class="icon ion-ios-checkmark balanced"></i> 6
+                        <i class="icon ion-ios-close assertive"></i> 23
+                        <div class="pull-left">
+                            <i class="icon ion-clock"></i> 16/03/2016
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="item card-item">
+            <div ui-sref="app.gallery" class="card ink ink-dark">
+                <div class="item item-avatar item-text-wrap">
+                    <span class="avatar">A</span>
+                    <i class="icon ion-calendar dark"></i> 
+                    <strong>Abril</strong>
+                    <div class="card-footer text-right">
+                        <i class="icon ion-ios-checkmark balanced"></i> 6
+                        <i class="icon ion-ios-close assertive"></i> 23
+                        <div class="pull-left">
+                            <i class="icon ion-clock"></i> 23/04/2016
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item card-item">
+            <div ui-sref="app.gallery" class="card ink ink-dark">
+                <div class="item item-avatar item-text-wrap">
+                    <span class="avatar">M</span>
+                    <i class="icon ion-calendar dark"></i> 
+                    <strong>Mayo</strong>
+                    <div class="card-footer text-right">
+                        <i class="icon ion-ios-checkmark balanced"></i> 6
+                        <i class="icon ion-ios-close assertive"></i> 23
+                        <div class="pull-left">
+                            <i class="icon ion-clock"></i> 23/04/2016
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item card-item">
+            <div ui-sref="app.gallery" class="card ink ink-dark">
+                <div class="item item-avatar item-text-wrap">
+                    <span class="avatar">J</span>
+                    <i class="icon ion-calendar dark"></i> 
+                    <strong>Junio</strong>
+                    <div class="card-footer text-right">
+                        <i class="icon ion-ios-checkmark balanced"></i> 6
+                        <i class="icon ion-ios-close assertive"></i> 23
+                        <div class="pull-left">
+                            <i class="icon ion-clock"></i> 23/04/2016
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        
+    </ion-content>
+
+ <ion-footer-bar align-title="center" class="bar-assertive">
+    <div class="tabs-master">     
+        <div class="tabs tabs-light  fixed tabs-icon-top">
+            <a ui-sref="app.profile" class="tab-item " ui-sref-active="active">
+                <i class="icon ion-home"></i>Home
+            </a>
+                   
+            <a ui-sref="app.evaluar" class="tab-item tab-item-active">
+                <i class="icon ion-person"></i>Alumno
+            </a>
+            <a ui-sref="app.evaluar" class="tab-item">
+                <i class="icon ion-search"></i> Buscar
+            </a>
+        </div>
+    </div>
+
+    </ion-footer-bar>
+</ion-view>

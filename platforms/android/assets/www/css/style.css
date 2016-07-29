@@ -1,0 +1,567 @@
+/* General
+==================================*/
+h1 {
+    color: #fff;
+    text-shadow: 0 1px 0px #000;
+    font-size: 42px;
+}
+
+.md-scroll-mask { position: initial;}
+
+
+/* Utilities
+==================================*/
+.title-bordered {
+    border-top: solid 2px #bbb;
+    padding-top: 30px;
+
+}
+
+p {
+    color: #555;
+    margin: 0 0 25px;
+}
+
+.scroll {
+    height: 100%;
+}
+
+
+/* Menu
+==================================*/
+.menu .bar.bar-header.expanded {
+    transition: all .5s ease-in-out;
+}
+
+.menu-open .bar.bar-header.expanded {
+    background-color: #222;
+}
+
+.menu h2 {
+    bottom: 0;
+    font-size: 15px;
+    left: 16px;
+    position: absolute;
+}
+
+.menu .avatar {
+    height: 88px;
+    width: 166px;
+}
+
+.menu.menu-left * {
+    font-weight: bold;
+}
+
+.menu-open .ion-navicon {
+    transform: rotate(-360deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-open .ion-navicon:before {
+    content: "\f2ca";
+}
+
+
+/* Login
+==================================*/
+.login{/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff9030+0,00e9d9+99 */
+background: #ff9030; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #ff9030 0%, #00e9d9 99%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  #ff9030 0%,#00e9d9 99%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  #ff9030 0%,#00e9d9 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9030', endColorstr='#00e9d9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+ }
+.app-icon {
+    background-color: #fff;
+  background: url('../img/logo.svg') center;
+background-size: cover;
+height: 105px;
+margin: 0 auto;
+width: 183px;
+}
+
+.social-login {
+    position: fixed;
+    bottom: 0;
+}
+
+.button-login{
+background: transparent;
+border: 1px solid #f8f8f8;
+color: #f8f8f8;
+text-transform: capitalize;
+box-shadow: none;
+}
+.button-login:hover,.button-login:focus.button-login:active,
+.button-registrate:hover,.button-registrate:focus.button-registrate:active{
+background: transparent;
+border: 1px solid #fff;
+color: #fff;
+text-transform: capitalize;
+box-shadow: none;
+}
+.button-registrate{
+background: rgba(255,255,255,0.1);
+border-top: 1px solid #f8f8f8;
+color: #f8f8f8;
+text-transform: capitalize;
+box-shadow: none;
+
+position: absolute;
+bottom:0px;
+}
+.button.button-block, .button.button-full {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.button-registrate span{
+font-size:12px;
+}
+.nav-bar-block, .bar {
+  background-color: #f9f9f9;
+  color: #444;
+}
+
+/*Perfil Docente
+====================*/
+.hero{
+    height: 240px;
+}
+.hero h3{
+    color:#e16f47;
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+.hero h4{
+    color:#888;
+    font-size: 14px;
+    margin: 0px auto;
+    font-weight: 200;
+
+}
+.hero h5{
+  margin-bottom: 20px;
+  color: #444;
+  font-size: 13px;
+}
+
+.hero .content hr {
+    width: 230px;
+    border: 1px solid #ececec;
+}
+
+.tabs-master .tabs .tab-item-active{
+    border-top: 3px solid #e16f47;
+}
+
+/*Perfil Docente
+====================*/
+.bar-stable > .button{
+    color: #444;
+    background: transparent;
+}
+
+.list a.item {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    border-bottom: 1px solid #C6C6C6;
+    padding: 40px 110px;
+}
+
+.opc-docente .item-icon-left .icon {
+    left: 37px;
+}
+
+.opc-docente .item-icon-right .icon {
+    right: 30px;
+    color: #3ce2ce;
+}
+
+.item h3 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/*Perfil Alumno
+====================*/
+.hero-alumno{
+background-size: cover;
+box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+color: #fff;
+height: 65px;
+position: relative;
+-webkit-transition: all 1s cubic-bezier(.55,0,.1,1);
+transition: all 1s cubic-bezier(.55,0,.1,1);
+-webkit-transform: translate3d(0,0,0);
+transform: translate3d(0,0,0);
+width: 100%;
+margin-top: 0px;
+padding: 4px 0px;
+
+}
+.hero-alumno h3{
+font-size: 15px;
+color: #444; 
+margin-top: 12px;
+
+}
+.hero-alumno h5{
+   color: #888;
+font-size: 13px;
+font-weight: 300;
+margin-top: -8px;
+
+}
+
+.avatar-alumno i {
+    color: rgb(85, 204, 187);
+    font-size: 28px;
+    border: 1px solid rgb(91, 228, 223);
+    border-radius: 0%;
+    padding: 6px 10px;
+    text-align: left;
+    float: left;
+    margin-left: 20px;
+margin-right: 12px;
+margin-top:-3px;
+   
+}
+.cambio-alumno i {
+color: rgb(147, 147, 147);
+font-size: 32px;
+padding: 15px 18px;
+text-align: right;
+float: right;
+margin-left: 25px;
+margin-top: -59px;
+background: #F0F0F0;
+}
+.menu-alumno .tabs{
+    position: relative;
+    border-bottom-width: 1px;
+}
+
+.menu-alumno .tabs .tab-item-active{
+    border-bottom: 3px solid #5cb;
+}
+
+.title-menu-alumno{
+    text-align: center;
+    font-weight: 500;
+color: #5cb;
+font-size: 16px;
+}
+.bar .button.button-clear {
+    color: #848484;
+}
+.list-select{
+padding: 14px 40px;
+}
+
+/*avatar evaluación mensual*/
+
+.avatar, .item-avatar .avatar {
+    background-position: center;
+    background-size: cover;
+    border-radius: 0%;
+    display: inline-block;
+    height: 56px;
+    left: 16px;
+    position: absolute;
+    width: 56px;
+    background: #5CB;
+    text-align: center;
+    padding: 17px 15px;
+    font-size: 30px;
+}
+/*div lista meses evaluación*/
+.list:last-child {
+  
+    background: #fff;
+}
+.hist{
+
+}
+.hist table tr td {
+ padding: 13px;
+font-size: 19px;
+text-transform: uppercase;
+width: 48px;
+height: 48px;
+margin-left: 6px;
+margin-bottom: 6px;
+text-align: center;
+cursor: pointer;
+background: #36c050;
+color: #fff;
+    }
+
+.hist table{
+ position: absolute;
+left: 50%;
+-webkit-webkit-transform: translate(-50%,-50%);
+-moz-webkit-transform: translate(-50%,-50%);
+-ms-webkit-transform: translate(-50%,-50%);
+-o-webkit-transform: translate(-50%,-50%);
+webkit-transform: translate(-50%,-50%);
+transform: translate(-50%,-50%);
+margin-top: 192px;
+width: 100%;
+}
+.tabs-syl{
+    border:  3px solid #5cb;
+
+    top: 202px;
+}
+
+.tabs-syl .tab-item-active{
+    background: #5cb;
+
+}
+
+.tabs-syl .tab-item .icon {
+    display: block;
+    margin: 0 auto;
+    height: 32px;
+    font-size: 26px;
+}
+
+.card-syl .item h2{
+    font-size: 20px;
+}
+
+.card-syl .avatar, .item-avatar .avatar {
+    background-position: center;
+    background-size: cover;
+    border-radius: 0%;
+    display: inline-block;
+    height: 46px;
+    left: 36px;
+    position: absolute;
+    width: 46px;
+    background: #5CB;
+    text-align: center;
+    padding: 13px 12px;
+    font-size: 27px;
+ }
+
+ .card-syl .card .item.item-avatar {
+    min-height: 78px;
+    padding-left: 93px;
+}
+
+.card-syl .card{
+    margin: 3px;
+}
+
+.tabs-syl .tab-item .icon-letra {
+    display: block;
+    margin: 0 auto;
+    height: 23px;
+    font-size: 26px;
+    margin-top: 9px;
+}
+
+.tabs-syl .tab-item .icon-syl {
+    display: block;
+    margin: 0 auto;
+    height: 34px;
+    font-size: 26px;
+    margin-top: 4px;
+}
+
+.card-syl .item-icon-left .icon {
+    left: 4px;
+    color: #5cb;
+}
+
+.card-syl .card .icon + .icon {
+    padding-left: 1rem;
+    font-size: 18px;
+}
+
+/*
+Evaluar, Perfil Alumno ===========*/
+
+.item-select select {
+   -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+position: absolute;
+top: 0;
+right: 0px;
+padding: 15px 161px 22px 0px;
+max-width: 100%;
+border: none;
+background: transparent;
+color: #929292;
+text-indent: 0.01px;
+text-overflow: '';
+white-space: nowrap;
+font-size: 15px;
+cursor: pointer;
+direction: rtl;
+     }
+     .input-label {
+    width: 100%;
+}
+
+.evaluar-desc p{
+    margin:20px 40px;
+    text-align: justify;
+}
+
+.evaluar-desc h5{
+    text-transform: uppercase;
+    font-size:13px;
+    margin-left: 40px;
+    color: #e16f47;
+    letter-spacing: 1px;
+}
+
+.evaluar-desc .button-evaluar{
+    background: #e16f47;
+    color: #fff;
+    height: 70px;
+
+
+}
+
+.tab-item .icon {
+    display: block;
+    margin: 0 auto;
+    height: 32px;
+    font-size: 25px;
+}
+/*Test letras
+=========================*/
+
+.bar-footer-test {
+    bottom: 0;
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    background-position: top;
+    height: 100px;
+}
+
+.test-footer {
+    position: fixed;
+    bottom: -15px;
+    width: 100%;
+    background: #FFF;
+    z-index: 2;
+}
+.test-footer i, .test-footer img {
+    height: 23px;
+    font-size: 26px;
+}
+
+.test-footer h5{
+text-align:center;
+
+color:#5acaba;
+margin-bottom: 0px;
+}
+
+.test-footer span{
+color:#888;
+text-transform: uppercase;
+font-size: 12px;
+}
+
+.sig-letra i {
+    color: #fff;
+    font-size: 30px;
+    padding: 10px 51px;
+    text-align: right;
+    float: right;
+    margin-left: 25px;
+    margin-top: -55px;
+    background: #5acaba;
+}
+
+.hero-alumno-test{
+ box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+background: #f8f8f8;
+height: 60px;
+position: relative;
+-webkit-transition: all 1s cubic-bezier(.55,0,.1,1);
+transition: all 1s cubic-bezier(.55,0,.1,1);
+-webkit-transform: translate3d(0,0,0);
+transform: translate3d(0,0,0);
+width: 100%;
+margin-top: -15px;
+padding: 13px 0px;
+
+}
+.hero-alumno-test h3{
+font-size: 15px;
+color: #444; 
+
+}
+.hero-alumno-test h5{
+   color: #888;
+font-size: 11px;
+font-weight: 300;
+margin-bottom:-19px;
+
+}
+
+.hero-alumno-test .avatar-alumno i {
+    color: #444;
+    font-size: 20px;
+    border-right: 1px solid #888;
+    border-top:none;
+    border-left:none;
+    border-bottom:none;
+    border-radius: 0%;
+    padding: 6px 20px;
+    text-align: left;
+    float: left;
+    margin-left: 8px;
+margin-right: 12px;
+   
+}
+
+
+/*Login
+====================================*/
+
+.padding {
+    padding: 16px 43px !important;
+     }
+
+     .login .item { background: transparent;
+        height:50px;}
+
+     .log .item {
+    border-color: #ddd;
+    background-color: #fff;
+    color: #FFF;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    padding: 6px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+    opacity: 0.7; }
+
+    /*
+    alumnos
+    =======================*/
+    .alumnos .list a.item {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    border-bottom: 1px solid #C6C6C6;
+    padding: 17px 110px;
+}
+
+.alumnos .has-header {
+    top: 5px;
+}

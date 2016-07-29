@@ -1,0 +1,56 @@
+<ion-view title="Estudiantes">
+ <ion-content>
+                <div class = "list carga-alumno">
+                   <label class = "item item-input item-select item-light">
+                      <div class = "input-label">
+                         Alumno
+                      </div>
+                        
+                      <select ng-model="estudiante" ng-options="estudiante.id as estudiante.name for estudiante in curso" ng-change="cambioEstudiante(estudiante)">
+                         <option value="" selected>Seleccione un Estudiante</option>
+                      </select>
+                        
+                   </label>
+                </div>
+
+               
+
+
+               
+      <!--   <div class="menu-alumno">
+            <div class="tabs tabs-icon-left  fixed">
+                                        
+                    <a ui-sref="app.gallery" class="tab-item tab-item-active" ui-sref-active="active">
+                        <i class="icon ion-clock"></i> Historial
+                    </a>
+                    <a ui-sref="app.alertas" class="tab-item">
+                        <i class="icon ion-ios-information"></i> Alertas
+                    </a>
+                       <a ui-sref="app.informes" class="tab-item">
+                        <i class="icon ion-archive"></i> Informes
+                    </a>
+            </div>
+        </div> -->
+
+
+
+            <h4 class="title-menu-alumno">Evaluaciones realizadas</h4>
+               
+        <div class="item card-item" ng-repeat="item in evaluaciones">
+            <div class="card ink ink-dark">
+            <!-- <div ui-sref="app.historial-mes" class="card ink ink-dark"> -->
+                <div class="item item-avatar item-text-wrap">
+                    <span class="avatar">  <i class="icon ion-calendar light"></i></span>
+                   <h2>{{item.mes_evaluacion}}</h2>
+                    <div class="card-footer text-right">
+                        <i class="icon ion-ios-checkmark balanced"></i> 6
+                        <i class="icon ion-ios-close assertive"></i> 23
+                        <div class="pull-left">
+                            <i class="icon ion-clock"></i> {{item.updated_at}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ion-content>
+</ion-view>
